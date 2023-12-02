@@ -179,4 +179,4 @@ const sortStudent = (e) => {
       name: student.value,
       house: sortingHat.house,
       crest: sortingHat.crest
-    });
+    }); // No trailing comma here
