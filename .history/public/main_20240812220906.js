@@ -180,7 +180,7 @@ const htmlStructure = () => {
     <div id="student-container" class="container d-flex"></div>
     `;
 
-  renderToDOM('#app', domString);
+  renderToDOM('#app', domString)
 };
 
 const header = () => {

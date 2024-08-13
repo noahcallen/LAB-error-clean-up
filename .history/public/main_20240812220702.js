@@ -112,25 +112,6 @@ const form = () => {
   document.querySelector('#sorting').addEventListener('submit', sortStudent);
 };
 
-const filterBtnRow = () => {
-  const domString = `<div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" id="filter--hufflepuff" class="btn btn-warning btn-sm">Hufflepuff</button>
-      <button type="button" class="btn btn-primary btn-sm" id="filter--ravenclaw">Ravenclaw</button>
-      <button type="button" class="btn btn-success btn-sm" id="filter--slytherin">Slytherin</button>
-      <button type="button" class="btn btn-danger btn-sm" id="filter--gryffindor">Gryffindor</button>
-      <button type="button" class="btn btn-secondary btn-sm" id="filter--all">All</button>
-    </div>`;
-
-  renderToDOM('#filter-container', domString);
-};
-
-const studentAreas = () => {
-  const domString = `<div id="students">No Students</div>
-  <div id="voldy">No Death Eaters</div>`;
-
-  renderToDOM('#student-container', domString);
-};
-
 const events = () => {
   // get form on the DOM on button click
   document.querySelector('#start-sorting').addEventListener('click', () => {
@@ -160,12 +141,13 @@ const events = () => {
   document.querySelector('#filter-container').addEventListener('click', (e) => {
     if (e.target.id.includes('filter')) {
       const [, house] = e.target.id.split('--');
-      if (house === 'all') {
-        studentsOnDom('#students', students);
-      } else if (house) {
-        const filter = students.filter((student) => student.house === house);
-        studentsOnDom('#students', filter, house);
-      }
+
+        if (house === 'all') {
+          studentsOnDom('#students', students);
+        } else if (house) {
+          const filter = students.filter((student) => student.house === house);
+          studentsOnDom('#students', filter, house);
+        }
     }
   });
 };
@@ -173,14 +155,14 @@ const events = () => {
 // ********** HTML Components  ********** //
 // the basic HMTL structure of app
 const htmlStructure = () => {
-  const domString = `
+    const domString = `
     <div id="header-container" class="header mb-3"></div>
     <div id="form-container" class="container mb-3 text-center"></div>
     <div id="filter-container" class="container mb-3"></div>
     <div id="student-container" class="container d-flex"></div>
     `;
 
-  renderToDOM('#app', domString);
+  renderToDOM('#app', domString)
 };
 
 const header = () => {
@@ -200,6 +182,25 @@ const startSortingBtn = () => {
   const domString = '<button type="button" class="btn btn-info" id="start-sorting">Start the Sorting Ceremony!</button>';
 
   renderToDOM('#form-container', domString);
+};
+
+const studentAreas = () => {
+  const domString = `<div id="students">No Students</div>
+  <div id="voldy">No Death Eaters</div>`
+
+  renderToDOM('#student-container', domString);
+};
+
+const filterBtnRow = () => {
+  const domString = `<div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" id="filter--hufflepuff" class="btn btn-warning btn-sm">Hufflepuff</button>
+      <button type="button" class="btn btn-primary btn-sm" id="filter--ravenclaw">Ravenclaw</button>
+      <button type="button" class="btn btn-success btn-sm" id="filter--slytherin">Slytherin</button>
+      <button type="button" class="btn btn-danger btn-sm" id="filter--gryffindor">Gryffindor</button>
+      <button type="button" class="btn btn-secondary btn-sm" id="filter--all">All</button>
+    </div>`;
+
+  renderToDOM('#filter-container', domString);
 };
 
 const startApp = () => {
